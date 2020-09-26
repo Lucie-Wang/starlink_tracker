@@ -1,11 +1,10 @@
-
 import Title from "antd/lib/typography/Title";
 import React from "react";
 import { InputNumber, Form, Button } from "antd";
 
-const ObserverInfo = () => {
+const ObserverInfo = (props) => {
   const onFormFinish = (observerInfo) => {
-    // TO DO: call N2YO api to get nearby satellites information
+    props.findSatellitesOnClick(observerInfo);
   }
 
   const layout = {
@@ -38,7 +37,7 @@ const ObserverInfo = () => {
             message: 'Please enter a valid longitude!',
           }]}
         >
-          <InputNumber min={-180} max={180} style={{ width: "56%" }} />
+          <InputNumber min={-180} max={180} style={{ width: "40%" }} />
         </Form.Item>
 
         <Form.Item
@@ -49,7 +48,7 @@ const ObserverInfo = () => {
             message: 'Please enter a valid latitude!',
           }]}
         >
-          <InputNumber min={-90} max={90} style={{ width: "56%" }} />
+          <InputNumber min={-90} max={90} style={{ width: "40%" }} />
         </Form.Item>
 
         <Form.Item
@@ -60,7 +59,7 @@ const ObserverInfo = () => {
             message: 'Please enter a valid altitude!',
           }]}
         >
-          <InputNumber min={-413} max={8850} style={{ width: "56%" }} />
+          <InputNumber min={-413} max={8850} style={{ width: "40%" }} />
         </Form.Item>
 
         <Form.Item
@@ -71,11 +70,11 @@ const ObserverInfo = () => {
             message: 'Please enter a valid radius!',
           }]}
         >
-          <InputNumber min={0} max={90} style={{ width: "56%" }} />
+          <InputNumber min={0} max={90} style={{ width: "40%" }} />
         </Form.Item>
 
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={props.loading}>
             Find Satellites
           </Button>
         </Form.Item>

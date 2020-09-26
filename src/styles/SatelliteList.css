@@ -1,0 +1,24 @@
+.satellite-list-container {
+    padding: 0 2%;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+.sat-list {
+    margin: 20px;
+    height: 200px;
+    overflow-y: auto;
+}
+.satellite-list-container h5{
+  margin: 5px 0px;
+}
+
+.track-info-panel button{
+  background-color: rgb(54, 42, 88);
+  border:rgb(54, 42, 88);
+}
+
+.progress-bar{
+  margin-top: 10px;
+}

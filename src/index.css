@@ -1,6 +1,7 @@
 
 @import '~antd/dist/antd.css';
 @import './styles/ObserverInfo.css';
+@import './styles/SatelliteList.css';
 
 .App-logo {
   height: 60px;
@@ -41,4 +42,8 @@
 .ant-layout-content {
   background:#fff;
   min-height: 120px;
+}
+
+.track-info-panel{
+  margin-top: 10px;
 }

@@ -2,7 +2,7 @@
     padding-left: 2%;
     margin: 10px;
     border: 1px solid #ccc;
-    border-radius: 2%;
+    border-radius: 8px;
   }
 
 .observer-info-container button{
@@ -16,4 +16,8 @@
 
 .observer-info-container h5{
     margin: 5px 0px;
+}
+
+.ant-input-number{
+  width:56% !important;
 }
