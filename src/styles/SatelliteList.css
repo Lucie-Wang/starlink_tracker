@@ -7,18 +7,10 @@
   
 .sat-list {
     margin: 20px;
-    height: 200px;
+    height: 210px;
     overflow-y: auto;
 }
 .satellite-list-container h5{
   margin: 5px 0px;
 }
 
-.track-info-panel button{
-  background-color: rgb(54, 42, 88);
-  border:rgb(54, 42, 88);
-}
-
-.progress-bar{
-  margin-top: 10px;
-}

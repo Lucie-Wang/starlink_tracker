@@ -2,6 +2,7 @@
 @import '~antd/dist/antd.css';
 @import './styles/ObserverInfo.css';
 @import './styles/SatelliteList.css';
+@import './styles/WorldMap.css';
 
 .App-logo {
   height: 60px;
@@ -12,24 +13,25 @@
   font-size: 20px;
   font-weight: bold;
   align-content: center;
-  margin-bottom: 0px;
 }
 
 .ant-layout-header {
   background-image: url('./images/stars.jpg');
   background-position-y: 20%;
   background-size: cover;
-  display: flex;
+  position: fixed;
+  /* display: flex; */
   align-items: center;
-  height: 70px;
+  height: 65px;
   width: 100%;
   color:white;
   box-shadow: rgb(220, 220, 220) 0 2px 10px;
 }
 
 .ant-layout-footer {
-  position: absolute;
+  position: fixed;
   text-align: center;
+  height: 65px;
   left: 0px;
   right: 0px;
   bottom: 0px;
@@ -40,6 +42,7 @@
 }
 
 .ant-layout-content {
+  margin-top: 65px;
   background:#fff;
   min-height: 120px;
 }

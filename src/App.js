@@ -10,9 +10,9 @@ function App() {
     <Layout>
       <Header>
         <img src={starlinkLogo} className="App-logo" alt="logo" />
-        <p className="title">
+        <span className="title">
           StarLink Tracker
-        </p>
+        </span>
       </Header>
       <Content>
         <Main/>
