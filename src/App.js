@@ -18,7 +18,7 @@ function App() {
         <Main/>
       </Content>
       <Footer>
-        (c)2020 StarLink Tracker. All Rights Reserved. Website Made by Lucie Wang
+      ©2020 StarLink Tracker. All Rights Reserved. Website Made by Lucie Wang
       </Footer>
     </Layout>
   );

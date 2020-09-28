@@ -6,8 +6,7 @@
   }
   
 .sat-list {
-    margin: 20px;
-    height: 210px;
+    height: 220px;
     overflow-y: auto;
 }
 .satellite-list-container h5{

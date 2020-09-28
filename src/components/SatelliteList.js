@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Title from "antd/lib/typography/Title";
 import { List, Checkbox, Avatar } from "antd";
 import satelliteImage from '../images/satellite.svg';
@@ -26,10 +26,13 @@ const SatelliteList = ({
     updateSatelliteList(nextSatelliteList);
   }
 
+  useEffect(() => {
+  }, [satList])
+
   return (
     <div className="satellite-list-container">
       <Title level={5}>Nearby Satellites ({satList? satList.length : 0})</Title>
-      <p>Select the satellites you wanna track on the world map at the right side</p>
+      <p>Select the satellite(s) you want to track on the world map</p>
       <hr/>
       <List 
         className="sat-list"

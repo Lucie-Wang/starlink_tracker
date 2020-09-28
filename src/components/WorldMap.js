@@ -5,11 +5,12 @@ import {
     Graticule,
     Sphere,
     ComposableMap,
-    Marker
+    Marker,
+    Line
 } from "react-simple-maps";
 // import axios from 'axios';
 import { Button, InputNumber, Progress } from "antd";
-import { NY20_API_KEY, NY20_BASE_URL } from "../constants";
+import { NY20_API_KEY, NY20_BASE_URL, COLOR } from "../constants";
 
 export const POSITION_API_BASE_URL = `${NY20_BASE_URL}/positions`;
 
@@ -26,7 +27,8 @@ const WorldMap = ({
     selectedSatellites,
     disabled,
     onTracking,
-    observerInfo
+    observerInfo,
+    initialValues
 }) => {
     const [duration, setDuration] = useState(1);
     const [progressPercentage, setProgressPercentage] = useState(0);
@@ -58,32 +60,42 @@ const WorldMap = ({
     const updateMarker = (data, index) => {
         setMarkersInfo(data.map((sat) => {
             return {
+                startLon: sat.positions[0].satlongitude,
+                startLat: sat.positions[0].satlatitude,
+                midLon: sat.positions[Math.floor(index / 2)].satlongitude,
+                midLat: sat.positions[Math.floor(index / 2)].satlatitude,
                 lon: sat.positions[index].satlongitude,
                 lat: sat.positions[index].satlatitude,
-                name: sat.info.satname,
+                name: sat.info.satname
             };
         }))
     }
 
     const startTracking = (data) => {
         let index = 59;
-        let end = data[0].positions.length;
+        let end = data[0].positions.length - 1;
         setCurrentTimestamp(new Date(data[0].positions[index].timestamp * 1000).toString());
         updateMarker(data, index);
-        const timerId = setInterval(() => {
-            
-            setProgressPercentage((index / end) * 100);
-            updateMarker(data, index);
-            setCurrentTimestamp(new Date(data[0].positions[index].timestamp * 1000).toString());
-            if (index >= end) {
-                setProgressText(progressStatus.Complete);
-                setTimerId(undefined);
-                onTracking(false);
-                clearInterval(timerId);
-            }
-            index += 60;
-        }, 1000);
-
+        if (duration === 1) {
+            setProgressPercentage(100);
+            setProgressText(progressStatus.Complete);
+            setTimerId(undefined);
+            onTracking(false);
+            clearInterval(timerId);
+            return timerId;
+        } 
+            const timerId = setInterval(() => {
+                index += 60;
+                setProgressPercentage((index / end) * 100);
+                updateMarker(data, index);
+                setCurrentTimestamp(new Date(data[0].positions[index].timestamp * 1000).toString());
+                if (index >= end) {
+                    setProgressText(progressStatus.Complete);
+                    setTimerId(undefined);
+                    onTracking(false);
+                    clearInterval(timerId);
+                }
+            }, 1000);
         return timerId;
     }
 
@@ -96,10 +108,9 @@ const WorldMap = ({
             const id = startTracking(data);
             setTimerId(id);
         }).catch(() => {
-            // TO DO: add some fallback UI handler here
+            console.log("error")
         });
     }
-
 
     return (
         <>
@@ -111,18 +122,21 @@ const WorldMap = ({
                 >
                     Track selected satellite(s)
         </Button>
-                <span style={{ marginLeft: "20px", marginRight: "10px" }}>for</span>
+                <span style={{ marginLeft: "20px", marginRight: "20px" }}>for</span>
                 <InputNumber
                     min={1}
-                    max={60}
+                    max={59}
                     defaultValue={1}
                     onChange={(value) => setDuration(value)}
                     disabled={disabled}
                 />
-                <span style={{ marginLeft: "20px", marginRight: "30px" }}>minutes</span>
+                <span style={{ marginLeft: "20px", marginRight: "30px" }}>minutes (1~59)</span>
                 <div className="progress-bar">
-                    <Progress
-                        style={{ width: "550px", marginRight: "100px", marginLeft: "50px" }}
+                    <Progress strokeColor={{
+                        from: '#108ee9',
+                        to: '#87d068',
+                    }}
+                        style={{ width: "550px", marginRight: "100px" }}
                         percent={progressPercentage}
                         format={() => progressText}
                     />
@@ -137,26 +151,48 @@ const WorldMap = ({
             <div className="time-stamp-container">
                 <b>{currentTimestamp}</b>
             </div>
-            <ComposableMap projectionConfig={{ scale: 145 }} style={{ height: "680px", marginLeft: "10px" }}>
-                <Graticule stroke="#DDD" strokeWidth={0.5} />
-                <Sphere stroke="#DDD" strokeWidth={0.5} />
+            <ComposableMap projectionConfig={{ scale: 145 }} height={480} style={{ width: "97%", marginLeft: "10px" }}>
+                <Graticule stroke="#b8d6fd" strokeWidth={0.5} />
+                <Sphere stroke="#b8d6fd" strokeWidth={0.5} />
                 <Geographies geography={geoUrl}>
                     {({ geographies }) =>
                         geographies.map(geo => (
                             <Geography
                                 key={geo.rsmKey}
                                 geography={geo}
-                                fill="#DDD"
+                                fill="#c0d6e4"
                                 stroke="#FFF"
                             />
                         ))
                     }
                 </Geographies>
+                {initialValues.longitude && initialValues.latitude ? <Marker coordinates={[initialValues.longitude, initialValues.latitude]}>
+                    <circle r={3} fill="#F53" />
+                    <text>Observer</text>
+                </Marker> : null}
                 {
-                    markersInfo.map((mark) =>
+                    markersInfo.map((mark, index) =>
+                        <Line
+                            coordinates={[[mark.startLon, mark.startLat], [mark.midLon, mark.midLat], [mark.lon, mark.lat]]}
+                            stroke={index < COLOR.length ? COLOR[index] : COLOR[COLOR.length - 1]}
+                            strokeWidth={2}
+                            strokeLinecap="round"
+                        />
+                    )
+                }
+                {
+                    markersInfo.map((mark, index) =>
                         <Marker coordinates={[mark.lon, mark.lat]}>
-                            <circle r={4} fill="#F53" />
-                            <text>{mark.name}</text>
+                            <circle r={4} fill={index < COLOR.length ? COLOR[index] : COLOR[COLOR.length - 1]} />
+                            <text text-anchor="middle"
+                                x={mark.Lon > mark.startLon ? "10": "20"} y="20" fill="#0c66a7">{mark.name}</text>
+                        </Marker>
+                    )
+                }
+                {
+                    markersInfo.map((mark, index) =>
+                        <Marker coordinates={[mark.startLon, mark.startLat]}>
+                            <circle r={4} fill={index < COLOR.length ? COLOR[index] : COLOR[COLOR.length - 1]} />
                         </Marker>
                     )
                 }
