@@ -76,26 +76,26 @@ const WorldMap = ({
         let end = data[0].positions.length - 1;
         setCurrentTimestamp(new Date(data[0].positions[index].timestamp * 1000).toString());
         updateMarker(data, index);
-        if (duration === 1) {
-            setProgressPercentage(100);
-            setProgressText(progressStatus.Complete);
-            setTimerId(undefined);
-            onTracking(false);
-            clearInterval(timerId);
-            return timerId;
-        } 
-            const timerId = setInterval(() => {
-                index += 60;
-                setProgressPercentage((index / end) * 100);
-                updateMarker(data, index);
-                setCurrentTimestamp(new Date(data[0].positions[index].timestamp * 1000).toString());
-                if (index >= end) {
-                    setProgressText(progressStatus.Complete);
-                    setTimerId(undefined);
-                    onTracking(false);
-                    clearInterval(timerId);
-                }
-            }, 1000);
+        const timerId = setInterval(() => {
+            if (duration === 1) {
+                setProgressPercentage(100);
+                setProgressText(progressStatus.Complete);
+                setTimerId(undefined);
+                onTracking(false);
+                clearInterval(timerId);
+                return timerId;
+            }
+            index += 60;
+            setProgressPercentage((index / end) * 100);
+            updateMarker(data, index);
+            setCurrentTimestamp(new Date(data[0].positions[index].timestamp * 1000).toString());
+            if (index >= end) {
+                setProgressText(progressStatus.Complete);
+                setTimerId(undefined);
+                onTracking(false);
+                clearInterval(timerId);
+            }
+        }, 1000);
         return timerId;
     }
 
@@ -185,7 +185,7 @@ const WorldMap = ({
                         <Marker coordinates={[mark.lon, mark.lat]}>
                             <circle r={4} fill={index < COLOR.length ? COLOR[index] : COLOR[COLOR.length - 1]} />
                             <text text-anchor="middle"
-                                x={mark.Lon > mark.startLon ? "10": "20"} y="20" fill="#0c66a7">{mark.name}</text>
+                                x={mark.Lon > mark.startLon ? "10" : "20"} y="20" fill="#0c66a7">{mark.name}</text>
                         </Marker>
                     )
                 }

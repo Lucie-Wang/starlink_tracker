@@ -27,8 +27,8 @@ const Main = () => {
     if ("geolocation" in navigator) {
       console.log("Available");
       navigator.geolocation.getCurrentPosition(function (position) {
-        setCurLa(Number((position.coords.latitude).toFixed(2)));
-        setCurLon(Number((position.coords.longitude).toFixed(2)));
+        setCurLa(Number((position.coords.latitude).toFixed(6)));
+        setCurLon(Number((position.coords.longitude).toFixed(6)));
         setLocationAvailable(true);
       });
     } else {
