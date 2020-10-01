@@ -94,7 +94,7 @@ const ObserverInfo = (props) => {
         >
           <div className="label-text"> <img src="https://upload.wikimedia.org/wikipedia/en/3/35/Information_icon.svg"  alt="information" width="15px" />
             <span className="hover-text">Search radius (0-90)</span></div>
-          <InputNumber min={0} max={90} style={{ width: "40%" }} value={initialValues.radius} onChange={(e) => onChangeHandler(e, "radius")}/>
+          <InputNumber min={0} max={90} style={{ width: "40%" }} placeholder="0-90" value={initialValues.radius} onChange={(e) => onChangeHandler(e, "radius")}/>
         </Form.Item>
 
         <Form.Item {...tailLayout}>

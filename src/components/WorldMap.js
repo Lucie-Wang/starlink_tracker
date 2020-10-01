@@ -10,9 +10,9 @@ import {
 } from "react-simple-maps";
 // import axios from 'axios';
 import { Button, InputNumber, Progress } from "antd";
-import { NY20_API_KEY, NY20_BASE_URL, COLOR } from "../constants";
+import { N2YO_API_KEY, N2YO_BASE_URL, COLOR } from "../constants";
 
-export const POSITION_API_BASE_URL = `${NY20_BASE_URL}/positions`;
+export const POSITION_API_BASE_URL = `${N2YO_BASE_URL}/positions`;
 
 const progressStatus = {
     Idle: 'Idle',
@@ -52,7 +52,7 @@ const WorldMap = ({
 
         return selectedSatellites.map((sat) => {
             const id = sat.satid;
-            return fetch(`${POSITION_API_BASE_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${NY20_API_KEY}`)
+            return fetch(`${POSITION_API_BASE_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${N2YO_API_KEY}`)
                 .then(response => response.json());
         })
     }
@@ -192,7 +192,7 @@ const WorldMap = ({
                 {
                     markersInfo.map((mark, index) =>
                         <Marker coordinates={[mark.startLon, mark.startLat]}>
-                            <circle r={4} fill={index < COLOR.length ? COLOR[index] : COLOR[COLOR.length - 1]} />
+                            <circle r={3} fill={index < COLOR.length ? COLOR[index] : COLOR[COLOR.length - 1]} />
                         </Marker>
                     )
                 }
