@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# StarLink Tracker
+:dizzy: <strong> Overview </strong>: A React JS based Starlink Trajectory Visualization Web Application
+<p>I am always fascinated by the universe, and love to watch the sky for hours looking for stars. This project aims at tracking the Starlink satellites launched by SpaceX based on the observer's geo location information including longitude, latitude, altitude, and radius. The observer can provide the info in the form and submit to see a list of nearby satellites. Then he/she can select one or multiple satellites to track on the world map to the righthand side of the dashboard. Additionally, the observer needs to fill the duration(0-59 mins) to see the path of the selected nearby Starlink satellites during the requested time duration (converted from minutes to seconds). During the tracking, the observer can abort the process at any time and revise the tracking request.</p>
+<div>
+  
+🌟 [Project Demo](https://project.dmuwydazhsh8r.amplifyapp.com/)
+* Recommended Browser: Chrome
+* Must allow your browser to access location info to be able to auto fill your current location (longitude, lattitude)
 
-## Available Scripts
+</div>
 
-In the project directory, you can run:
+<strong>🛰️ Starlink </strong><br>
+SpaceX is developing a low latency, broadband internet system to meet the needs of consumers across the globe. Enabled by a constellation of thousands of mass-produced small satellites in low Earth orbit, working in combination with ground transceivers. Here is a brief Starlink launch history, in case you ar interested: 
+<ul>
+  <li>First Two Prototype test-flight satellites launched in Feb. 2018</li>
+  <li>A second set of test satellites, and 60 operational stellites launched in May 2019</li>
+  <li>More to come...</li>
+ </ul>
+<strong> ⚒ My Work at a Glance</strong>
+<ul>
+  <li>Set up the Repo by leveraging the React official CLI tool, create-react-app and use NPM to manage project dependencies</li>
+  <li>Designed the layout, component interface and data flow prior to the implementation </li>
+  <li>Built forms to collect user observation info (longitude, latitude, altitude, radius) using Ant Design component library with an option to use browser geolocation for better User experience </li>
+  <li>Achieved the core tracking functionality by fetched nearby satellites info and position prediction data through the N2YO API(s) and React-Simple-Map to animate selected satellite paths on map</li>
+  <li>Deployed the dashboard to AWS for demonstration</li>
+</ul>
 
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**✍ Author: Lucie Wang** - [https://github.com/Lucie-Wang](https://github.com/Lucie-Wang)
