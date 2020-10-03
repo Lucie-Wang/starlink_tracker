@@ -6,7 +6,12 @@
 🌟 [Project Demo](https://project.dmuwydazhsh8r.amplifyapp.com/)
 * Recommended Browser: Chrome
 * Must allow your browser to access location info to be able to auto fill your current location (longitude, lattitude)
+</div>
 
+<div align="center">
+  
+![Starlink Demo](./starlink_demo_I.gif)
+  
 </div>
 
 <strong>🛰️ Starlink </strong><br>
