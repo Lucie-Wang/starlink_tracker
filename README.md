@@ -26,7 +26,7 @@ SpaceX is developing a low latency, broadband internet system to meet the needs 
   <li>Set up the Repo by leveraging the React official CLI tool, create-react-app and use NPM to manage project dependencies</li>
   <li>Designed the layout, component interface and data flow prior to the implementation </li>
   <li>Built forms to collect user observation info (longitude, latitude, altitude, radius) using Ant Design component library with an option to use browser geolocation for better User experience </li>
-  <li>Achieved the core tracking functionality by fetched nearby satellites info and position prediction data through the N2YO API(s) and React-Simple-Map to animate selected satellite paths on map</li>
+  <li>Achieved the core tracking functionality by fetching nearby satellites info and position prediction data through the N2YO API(s) and React-Simple-Map to animate selected satellite paths on map</li>
   <li>Deployed the dashboard to AWS for demonstration</li>
 </ul>
 
