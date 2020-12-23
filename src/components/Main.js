@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "antd";
 import ObserverInfo from "./ObserverInfo";
-import { SAT_CATEGORY, N2YO_API_KEY, N2YO_BASE_URL } from "../constants";
+import { SAT_CATEGORY, N2YO_API_KEY, N2YO_BASE_URL, CORS_PREFIX } from "../constants";
 import SatelliteList from "./SatelliteList";
 import WorldMap from "./WorldMap";
 import axios from "axios";
@@ -51,7 +51,7 @@ const Main = () => {
     setObserverInfo(nextObserverInfo);
     const { longitude, latitude, altitude, radius } = nextObserverInfo;
     setLoading(true);
-    fetch(`${ABOVE_API_BASE_URL}/${latitude}/${longitude}/${altitude}/${radius}/${SAT_CATEGORY}&apiKey=${N2YO_API_KEY}`)
+    fetch(`${CORS_PREFIX}/${ABOVE_API_BASE_URL}/${latitude}/${longitude}/${altitude}/${radius}/${SAT_CATEGORY}&apiKey=${N2YO_API_KEY}`)
       .then(response => response.json())
       .then(data => {
         setSatList(data.above.map((satellite) => {

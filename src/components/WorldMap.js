@@ -10,7 +10,7 @@ import {
 } from "react-simple-maps";
 // import axios from 'axios';
 import { Button, InputNumber, Progress } from "antd";
-import { N2YO_API_KEY, N2YO_BASE_URL, COLOR } from "../constants";
+import { N2YO_API_KEY, N2YO_BASE_URL, COLOR, CORS_PREFIX } from "../constants";
 
 export const POSITION_API_BASE_URL = `${N2YO_BASE_URL}/positions`;
 
@@ -52,7 +52,7 @@ const WorldMap = ({
 
         return selectedSatellites.map((sat) => {
             const id = sat.satid;
-            return fetch(`${POSITION_API_BASE_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${N2YO_API_KEY}`)
+            return fetch(`${CORS_PREFIX}/${POSITION_API_BASE_URL}/${id}/${latitude}/${longitude}/${altitude}/${duration * 60}&apiKey=${N2YO_API_KEY}`)
                 .then(response => response.json());
         })
     }
