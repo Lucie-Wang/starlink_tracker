@@ -14,7 +14,6 @@ const Main = () => {
   const [trakcing, setTracking] = useState(false);
   const [observerInfo, setObserverInfo] = useState({});
   const [locationAvailable, setLocationAvailable] = useState(false);
-  const [ipLocationAvailable, setIpLocationAvailable] = useState(false);
   const [curLa, setCurLa] = useState({});
   const [curLon, setCurLon] = useState({});
   const [initialValues, setInitialValues] = useState({
@@ -33,20 +32,18 @@ const Main = () => {
         setLocationAvailable(true);
       });
     } else {
-       if(!locationAvailable && !ipLocationAvailable){
-         axios.get('http://ipinfo.io/json', null)
-         .then(res => {
-           if ('loc' in res) {
-             let loc = res.loc.split(',');
-             setCurLa(Number((loc[0]).toFixed(2)));
-             setCurLon(Number((loc[1]).toFixed(2)));
-             setIpLocationAvailable(true);
-           } else {
-             console.warn('Getting location by IP failed.');
-           }
-         })
-         .catch(res=> console.log(res.error))
-       }
+      axios.get('http://ipinfo.io/json', null)
+        .then(res => {
+          if ('loc' in res) {
+            let loc = res.loc.split(',');
+            setCurLa(Number((loc[0]).toFixed(2)));
+            setCurLon(Number((loc[1]).toFixed(2)));
+            setLocationAvailable(true);
+          } else {
+            console.warn('Getting location by IP failed.');
+          }
+        })
+        .catch(res=> console.log(res.error))
     }
   }, [])
 
