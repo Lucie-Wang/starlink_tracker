@@ -44,7 +44,6 @@ const ObserverInfo = (props) => {
       >
         <Form.Item
           label="Longitude"
-          name="longitude"
           rules={[{
             required: true,
             message: 'Please enter a valid longitude!',
@@ -58,7 +57,6 @@ const ObserverInfo = (props) => {
 
         <Form.Item
           label="Latitude"
-          name="latitude"
           rules={[{
             required: true,
             message: 'Please enter a valid latitude!',
@@ -72,7 +70,6 @@ const ObserverInfo = (props) => {
 
         <Form.Item
           label="Altitude(meters)"
-          name="altitude"
           rules={[{
             required: true,
             message: 'Please enter a valid altitude!',
@@ -86,7 +83,6 @@ const ObserverInfo = (props) => {
 
         <Form.Item
           label="Radius"
-          name="radius"
           rules={[{
             required: true,
             message: 'Please enter a valid radius!',
